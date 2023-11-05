@@ -15,26 +15,34 @@
 <body>
 
 
+    @php
+        $id = 14;
+    @endphp
+
 
     <h1>Hello Laravel buddy</h1>
 
     <script>
-        // $(document).ready(function() {
+        $(document).ready(function() {
             let data = {
                 username: 'praveen',
-                password: '4t9gdsfGn.'
+                password: '4t9gdsfGn.',
+
             }
     
-        //     data = JSON.stringify(data);
-        //     jQuery.ajax({
-        //         url: `{{ route('user.register') }}`,
-        //         type: 'POST',
-        //         data: data,
-        //         success: function(data) {
-        //             $("#para").html(data);
-        //         }
-        //     });
-        // });
+            data = JSON.stringify(data);
+            jQuery.ajax({
+                url: `http://127.0.0.1:8000/api/product/{{$id}}`,
+                type: 'GET',
+                headers: {
+                    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjk5MjAzMjA0LCJleHAiOjE2OTkyMDY4MDQsIm5iZiI6MTY5OTIwMzIwNCwianRpIjoidDFEbFI3QnJRRGJtTE9FUiIsInN1YiI6IjE2IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.IsSDDbA2LK-6yhO_bm1yjKcxCG3RvNO21v0e4lMv1hk"
+                },  
+                // data: data,
+                success: function(data) {
+                    $("#para").html(data);
+                }
+            });
+        });
 
 
 
