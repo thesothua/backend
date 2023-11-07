@@ -77,6 +77,15 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
+    public function view()
+    {
+        $product = Product::all();
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+        return response()->json($product);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
