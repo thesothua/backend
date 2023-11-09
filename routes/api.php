@@ -50,4 +50,5 @@ Route::controller(ProductController::class)->middleware('api')->group(function (
     Route::post('/product', 'store');
     Route::get('/product/{id}', 'show');
     Route::get('/products', 'view');    
+    Route::get('/latest-product', 'latest_product');    
 });

@@ -79,11 +79,21 @@ class ProductController extends Controller
 
     public function view()
     {
-        $product = Product::all();
+        $product = Product::select('products.*', 'categories.cat_title', 'brands.brand_title')->join('categories', 'categories.cat_id', 'products.product_cat')->leftJoin('brands', 'brands.brand_id', 'products.product_brand')->get();
         if (!$product) {
             return response()->json(['error' => 'Product not found'], 404);
         }
         return response()->json($product);
+    }
+
+    public function latest_product()
+    {
+        $latestProduct = Product::select('products.*')->orderBy('product_id', 'desc')->take(8)->get();
+
+        if (!$latestProduct) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+        return response()->json($latestProduct);
     }
 
     /**
