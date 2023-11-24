@@ -95,7 +95,19 @@ class ProductController extends Controller
         }
         return response()->json($latestProduct);
     }
+    
+    public function single_product($id  = null)
+    {
+        // $latestProduct = Product::select('products.*')->orderBy('product_id', 'desc')->take(8)->get();
 
+        
+        $product = Product::find($id);
+
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+        return response()->json($product);
+    }
     /**
      * Show the form for editing the specified resource.
      */
